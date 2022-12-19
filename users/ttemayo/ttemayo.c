@@ -844,12 +844,13 @@ bool caps_word_press_user(uint16_t keycode) {
     case KC_DEL:
     case KC_UNDS:
     case KC_LEAD: // Add Leader key exception
-    //case KC_LSFT: // https://github.com/qmk/qmk_firmware/pull/17463 dev to be merged with master
-    //case KC_RSFT: 
+    case KC_LSFT:
+    case KC_RSFT: 
+    case LT_VIM: // ergodash/rev1/ttemayo specific
       return true;
 
     default:
-      return false;  // Deactivate Caps Word.
+      return false;  // Deactivate Caps Word
   }
 }
 
