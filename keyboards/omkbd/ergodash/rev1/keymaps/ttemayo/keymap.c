@@ -417,10 +417,10 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     case VIM_F:
       if (is_pressed && (get_mods() & MOD_MASK_CTRL)) {
         del_mods(MOD_MASK_CTRL);
-        PRESS(KC_PGDOWN);
+        PRESS(KC_PGDN);
         set_mods(mod_state);
       } else {
-        RELEASE(KC_PGDOWN);
+        RELEASE(KC_PGDN);
       }
       return false;
     

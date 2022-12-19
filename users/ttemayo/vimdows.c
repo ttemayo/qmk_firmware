@@ -60,9 +60,9 @@ void CTRL(uint16_t keycode) {
 }
 
 void SHIFT(uint16_t keycode) {
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(keycode);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
 }
 
 void ALT(uint16_t keycode) {
@@ -356,10 +356,10 @@ void VIM_CHANGE_WHOLE_LINE(int insert_layer) {
   VIM_LEADER(KC_NO);
   TAP(KC_HOME);
   TAP(KC_HOME);
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(KC_END);
     TAP(KC_RIGHT);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
   CTRL(KC_X);
   layer_move(insert_layer);
 }
@@ -427,7 +427,7 @@ void VIM_SCROLL_HALF_UP(void) {
 void VIM_SCROLL_FULL_FORWARD(void) {
   print("\e[31mC-f\e[0m");
   VIM_LEADER(KC_NO);
-  TAP(KC_PGDOWN);
+  TAP(KC_PGDN);
 }
 
 /**
@@ -529,11 +529,11 @@ void VIM_YANK_DOWN(void) {
   VIM_LEADER(KC_NO);
   TAP(KC_HOME);
   TAP(KC_HOME);
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(KC_DOWN);
     TAP(KC_END);
     TAP(KC_RIGHT);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
   CTRL(KC_C);
   TAP(KC_UP);
   TAP(KC_UP);
@@ -547,12 +547,12 @@ void VIM_YANK_UP(void) {
   print("\e[31myk\e[0m");
   VIM_LEADER(KC_NO);
   TAP(KC_END);
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(KC_UP);
     TAP(KC_HOME);
     TAP(KC_HOME);
     TAP(KC_LEFT);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
   CTRL(KC_C);
   TAP(KC_DOWN);
   TAP(KC_DOWN);
@@ -595,10 +595,10 @@ void VIM_YANK_WHOLE_LINE(void) {
   VIM_LEADER(KC_NO);
   TAP(KC_HOME);
   TAP(KC_HOME);
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(KC_END);
     TAP(KC_RIGHT);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
   CTRL(KC_C);
   TAP(KC_LEFT); // return cursor
 }
@@ -667,10 +667,10 @@ void VIM_DELETE_WHOLE_LINE(void) {
   VIM_LEADER(KC_NO);
   TAP(KC_HOME);
   TAP(KC_HOME);
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(KC_END);
     TAP(KC_RIGHT);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
   CTRL(KC_X);
 }
 
@@ -707,11 +707,11 @@ void VIM_DELETE_DOWN(void) {
   VIM_LEADER(KC_NO);
   TAP(KC_HOME);
   TAP(KC_HOME);
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(KC_DOWN);
     TAP(KC_END);
     TAP(KC_RIGHT);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
   CTRL(KC_X);
 }
 
@@ -723,12 +723,12 @@ void VIM_DELETE_UP(void) {
   print("\e[31mdk\e[0m");
   VIM_LEADER(KC_NO);
   TAP(KC_END);
-  PRESS(KC_LSHIFT);
+  PRESS(KC_LSFT);
     TAP(KC_UP);
     TAP(KC_HOME);
     TAP(KC_HOME);
     TAP(KC_LEFT);
-  RELEASE(KC_LSHIFT);
+  RELEASE(KC_LSFT);
   CTRL(KC_X);
 }
 

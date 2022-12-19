@@ -156,11 +156,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->tap.count && is_pressed) {
         return true;
       } else if (is_pressed) {
-        register_code16(KC_RSHIFT); 
+        register_code16(KC_RSFT); 
         register_code16(KC_RCTL);
         trns_layer_hold_registered = true;
       } else if (trns_layer_hold_registered) {
-        unregister_code16(KC_RSHIFT);
+        unregister_code16(KC_RSFT);
         unregister_code16(KC_RCTL);
         trns_layer_hold_registered = false;
       }
@@ -513,7 +513,7 @@ void numlock_on_init(void) {
   led_t led_state = host_keyboard_led_state();
   bool isNumlock = led_state.num_lock;
   if (!isNumlock) {
-    tap_code16(KC_NUMLOCK);
+    tap_code16(KC_NUM_LOCK);
   }
 }
 
