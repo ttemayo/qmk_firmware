@@ -128,6 +128,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         is_rhyper_f20_pressed = false;
       }
       break;
+        
+    /* Modifying Tap part of Mod-Tap */
+    case FT_PSCR: // LT(_FN,KC_PSCR)
+      // Swap the LAlt and LCtl modifiers when chorded with PrntSc, for comfort
+      if (record->tap.count && is_pressed && (mod_state == MOD_BIT(KC_LCTL))) {
+        del_mods(MOD_BIT(KC_LCTL));
+        register_code16(KC_LALT);
+          tap_code(KC_PSCR);
+        unregister_code16(KC_LALT);
+        set_mods(mod_state);
+        return false; // Return false to ignore further processing of key
+      } else if (record->tap.count && is_pressed && (mod_state == MOD_BIT(KC_LALT))) {
+        del_mods(MOD_BIT(KC_LALT));
+        register_code16(KC_LCTL);
+          tap_code(KC_PSCR);
+        unregister_code16(KC_LCTL);
+        set_mods(mod_state);
+        return false;
+      }
+      break;
 
     /* Modifying hold portion of a Mod Tap */
     case MPRV_RW: // LT(0, KC_MPRV)
