@@ -108,7 +108,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
 
-    /* Custom Mod-tap, Modifier Tracking */
+    /* Custom Mod-tap keycodes, Modifier Tracking */
     case MEH_F17:
       if (record->tap.count && is_pressed) {
         return true; // Return true to continue normal key processing
