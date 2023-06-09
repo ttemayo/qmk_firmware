@@ -471,7 +471,10 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
       if (is_pressed) {
         switch (VIM_QUEUE) {
           case KC_NO: 
-            if (get_mods() & MOD_MASK_SHIFT) {
+            if (get_mods() == MOD_MASK_CSA || get_mods() == MOD_MASK_CSAG) {
+              // When Meh or Hyper mods are held, do not call VIM_JOIN macro
+              PRESS(KC_DOWN);
+            } else if (get_mods() & MOD_MASK_SHIFT) {
               del_mods(MOD_MASK_SHIFT);
               VIM_JOIN();
               set_mods(mod_state);
