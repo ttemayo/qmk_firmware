@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |---------+---------+---------+---------+---------+---------|         |          |         |---------+---------+---------+---------+---------+---------|
    * | TRNS    |         | VIM W   | VIM E   | VIM R   |         |---------|          |---------|         | VIM U   | VIM I   | VIM O   | VIM P   |         |
    * |---------+---------+---------+---------+---------+---------| TRNS    |          |         |---------+---------+---------+---------+---------+---------|
-   * | CO_GRV  | VIM A   | VIM S   | VIM D   | VIM F   | VIM G   |---------|          |---------| VIM H   | VIM J   | VIM K   | VIM L   | MO(NUM) |         |
+   * |         | VIM A   | VIM S   | VIM D   | VIM F   | VIM G   |---------|          |---------| VIM H   | VIM J   | VIM K   | VIM L   | MO(NUM) |         |
    * |---------+---------+---------+---------+---------+---------| PrtScr  |          |         |---------+---------+---------+---------+---------|---------|
    * | TRNS    |         | VIM X   | VIM C   | VIM V   | VIM B   |---------'          `---------|         |         |         |         | Ctrl+F  | TRNS    |
    * |---------+---------+---------+-----------------------------'                              `-----------------------------+---------+---------+---------|
@@ -154,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_VIMTOGGLE] = LAYOUT_4key_2u_inner (
       VIM_ESC,  XXXXXXX,  XXXXXXX,  XXXXXXX,  VIM_4,    XXXXXXX,  XXXXXXX,             XXXXXXX,  VIM_6,    XXXXXXX,  XXXXXXX,  XXXXXXX,  VIM_0,    XXXXXXX, 
       _______,  XXXXXXX,  VIM_W,    VIM_E,    VIM_R,    XXXXXXX,  _______,             XXXXXXX,  VIM_Y,    VIM_U,    VIM_I,    VIM_O,    VIM_P,    XXXXXXX, 
-      CO_GRV,   VIM_A,    VIM_S,    VIM_D,    VIM_F,    VIM_G,    KC_PSCR,             XXXXXXX,  VIM_H,    VIM_J,    VIM_K,    VIM_L,    XXXXXXX,  XXXXXXX,
+      XXXXXXX,  VIM_A,    VIM_S,    VIM_D,    VIM_F,    VIM_G,    KC_PSCR,             XXXXXXX,  VIM_H,    VIM_J,    VIM_K,    VIM_L,    XXXXXXX,  XXXXXXX,
       _______,  XXXXXXX,  VIM_X,    VIM_C,    VIM_V,    VIM_B,    ___X___,             ___X___,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  CTLF,     _______,
       _______,  _______,  _______,  _______,  _______,  _______,  _______,             MO(_VIM), _______,  _______,  _______,  _______,  _______,  _______
       ),
@@ -165,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |---------+---------+---------+---------+---------+---------|         |          |         |---------+---------+---------+---------+---------+---------|
    * | TRNS    |         | VIM W   | VIM E   | VIM R   |         |---------|          |---------| VIM Y   | VIM U   | VIM I   |         | VIM P   |         |
    * |---------+---------+---------+---------+---------+---------| TRNS    |          | Mute    |---------+---------+---------+---------+---------+---------|
-   * | CO_GRV  |         |         | VIM D   | VIM F   | VIM G   |---------|          |---------| VIM H   | VIM J   | VIM K   | VIM L   |         |         |
+   * |         |         |         | VIM D   | VIM F   | VIM G   |---------|          |---------| VIM H   | VIM J   | VIM K   | VIM L   |         |         |
    * |---------+---------+---------+---------+---------+---------| PrtScr  |          | Play    |---------+---------+---------+---------+---------|---------|
    * | TRNS    |         | VIM X   |         | VIM V   | VIM B   |---------'          `---------|Prev/Rwd | Vol -   | Vol +   |Next/Fwd | Ctrl+F  | TRNS    |
    * |---------+---------+---------+-----------------------------'                              `-----------------------------+---------+---------+---------|
@@ -178,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_VIM] = LAYOUT_4key_2u_inner (
       VIM_ESC,  XXXXXXX,  XXXXXXX,  XXXXXXX,  VIM_4,    XXXXXXX,  XXXXXXX,             XXXXXXX,  VIM_6,    XXXXXXX,  XXXXXXX,  XXXXXXX,  VIM_0,    XXXXXXX, 
       _______,  XXXXXXX,  VIM_W,    VIM_E,    VIM_R,    XXXXXXX,  _______,             KC_MUTE,  VIM_Y,    VIM_U,    VIM_I,    XXXXXXX,  VIM_P,    XXXXXXX, 
-      CO_GRV,   XXXXXXX,  XXXXXXX,  VIM_D,    VIM_F,    VIM_G,    KC_PSCR,             KC_MPLY,  VIM_H,    VIM_J,    VIM_K,    VIM_L,    XXXXXXX,  XXXXXXX, 
+      XXXXXXX,  XXXXXXX,  XXXXXXX,  VIM_D,    VIM_F,    VIM_G,    KC_PSCR,             KC_MPLY,  VIM_H,    VIM_J,    VIM_K,    VIM_L,    XXXXXXX,  XXXXXXX, 
       _______,  XXXXXXX,  VIM_X,    XXXXXXX,  VIM_V,    VIM_B,    ___X___,             ___X___,  MPRV_RW,  KC_VOLD,  KC_VOLU,  MNXT_FF,  CTLF,     _______, 
       _______,  _______,  _______,  _______,  _______,  KC_DEL,  _______,/*<Keep TRNS>*/_______, KC_ENT,   _______,  _______,  _______,  _______,  _______
       ),

@@ -101,8 +101,6 @@ enum userspace_custom_keycodes {
   GRTREQ,   // >=
   EQTO,     // ==
   TILSLSH,  // ~/.
-  /* Conditional Key Override */
-  CO_GRV,   // " for HYPER(`)
   NEW_SAFE_RANGE,
 };
 

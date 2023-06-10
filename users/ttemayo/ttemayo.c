@@ -225,20 +225,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
       }
       return true; // Let QMK process the keycode as usual
-    
-    case CO_GRV:
-      if(is_pressed && (mod_state & MOD_MASK_SHIFT)) {
-        register_code16(KC_LALT); 
-        register_code16(KC_LCTL);
-        register_code16(KC_LGUI);
-        register_code(KC_GRAVE);
-      } else if (!is_pressed) {
-        unregister_code(KC_GRAVE);
-        unregister_code16(KC_LGUI);
-        unregister_code16(KC_LCTL);
-        unregister_code16(KC_LALT);
-      }
-      return false;
 
     case CO_RCF21: // RCTL_T(KC_F21)
       if (record->tap.count && is_pressed && (mod_state == MOD_BIT(KC_LSFT))) {
