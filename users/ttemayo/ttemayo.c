@@ -244,6 +244,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->tap.count && is_pressed && (mod_state == MOD_BIT(KC_LSFT))) {
         tap_code(KC_END);
         return false;
+      } else if (record->tap.count && is_pressed && (mod_state == MOD_BIT(KC_LCTL))) {
+        del_mods(MOD_BIT(KC_LCTL));
+        tap_code(KC_END);
+        set_mods(mod_state);
+        return false;
       } else if (record->tap.count && is_pressed) {
         return true; // Return true to continue normal key processing
       } else if (is_pressed) {
@@ -257,6 +262,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CO_LCTL: // KC_LCTL
       if (is_pressed && (mod_state == MOD_BIT(KC_RSFT))) {
         tap_code(KC_HOME);
+        return false;
+      } else if (is_pressed && (mod_state == MOD_BIT(KC_RCTL))) {
+        del_mods(MOD_BIT(KC_RCTL));
+        tap_code(KC_HOME);
+        set_mods(mod_state);
         return false;
       }
       return true;
