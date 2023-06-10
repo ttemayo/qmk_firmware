@@ -231,9 +231,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         register_code16(KC_LALT); 
         register_code16(KC_LCTL);
         register_code16(KC_LGUI);
-          register_code(KC_GRAVE);
+        register_code(KC_GRAVE);
       } else if (!is_pressed) {
-          unregister_code(KC_GRAVE);
+        unregister_code(KC_GRAVE);
         unregister_code16(KC_LGUI);
         unregister_code16(KC_LCTL);
         unregister_code16(KC_LALT);
