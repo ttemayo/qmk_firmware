@@ -17,6 +17,7 @@ KEY_OVERRIDE_ENABLE = yes	# 990 bytes;
 
 # ttemayo's Custom Features
 TTEMAYO_SYM_MACROS_ENABLE = yes
+TTEMAYO_KEY_OVERRIDE_ENABLE = yes
 VIMDOWS_ENABLE = yes
 
 # Firmware Size Optimizations
