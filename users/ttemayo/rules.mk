@@ -12,6 +12,10 @@ ifeq ($(strip $(TTEMAYO_SYM_MACROS_ENABLE)), yes)
     OPT_DEFS += -DTTEMAYO_SYM_MACROS_ENABLE
 endif
 
+ifeq ($(strip $(TTEMAYO_KEY_OVERRIDE_ENABLE)), yes)
+    OPT_DEFS += -DTTEMAYO_KEY_OVERRIDE_ENABLE
+endif
+
 ifeq ($(strip $(VIMDOWS_ENABLE)), yes)
     OPT_DEFS += -DVIMDOWS_ENABLE
 endif
