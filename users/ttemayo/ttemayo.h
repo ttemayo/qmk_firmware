@@ -16,6 +16,7 @@ bool is_scroll_locked;
 extern bool is_meh_f17_pressed;
 extern bool is_rhyper_f20_pressed;
 extern bool is_rctrl_f21_pressed;
+extern bool is_rctrlrsft_f18_pressed;
 
 /* Track key states for tap/hold media keys */
 bool is_m_prv_pressed;

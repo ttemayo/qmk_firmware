@@ -11,6 +11,7 @@ bool is_leader_active = false;
 bool is_meh_f17_pressed     = false;
 bool is_rhyper_f20_pressed  = false;
 bool is_rctrl_f21_pressed   = false;
+bool is_rctrlrshft_f18_pressed = false;
 
 /* Flags for Custom Media Mod-taps */
 bool is_m_prv_pressed = false; // Media Previous Track
@@ -111,16 +112,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 
     /* Custom Mod-tap keycodes, Modifier Tracking */
-    case MEH_F17:
-      if (record->tap.count && is_pressed) {
-        return true; // Return true to continue normal key processing
-      } else if (is_pressed) {
-        is_meh_f17_pressed = true;
-      } else {
-        is_meh_f17_pressed = false;
-      }
-      break;
-    
     case HYPR_F20:
       if (record->tap.count && is_pressed) {
         return true;
@@ -171,22 +162,75 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code16(KC_MFFD);
       }
       return false;
+    
+    case MEH_F17: // MEH_T(KC_F17)
+    {
+      static bool rctrlralt_registered;
+      if (record->tap.count && is_pressed) {
+        return true; // Return true to continue normal key processing
+      } else if (is_pressed) {
+        if (is_rctrlrshft_f18_pressed) {
+          unregister_mods(MOD_MASK_RCS);
+          register_code16(KC_LCTL);
+          register_code16(KC_LALT);
+          rctrlralt_registered = true;
+        } else {
+          register_mods(MOD_MASK_LCSA);
+        }
+        is_meh_f17_pressed = true;
+      } else {
+        if (rctrlralt_registered) {
+          unregister_code16(KC_LCTL);
+          unregister_code16(KC_LALT);
+          rctrlralt_registered = false;
+        } else {
+          unregister_mods(MOD_MASK_LCSA);
+        }
+        // Can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
+        // if (is_rctrlrshft_f18_pressed) {
+        //   register_mods(MOD_MASK_RCS);
+        // }
+        is_meh_f17_pressed = false;
+        break;
+      }
+      return false;
+    }
 
+    /* Modifying both, tap and hold portions of a Mod Tap */
     case RCST_F18: // LT(_TRNS, F18)
     { // Add RShift and RCtrl modifiers to hold
-      static bool trns_layer_hold_registered;
-      if (record->tap.count && is_pressed) {
-        return true;
+      static bool rctrlralt_registered;
+      if (record->tap.count && is_pressed && mod_state != 0) {
+        // At least one modifier key is active
+        tap_code16(KC_F18);
+        return false;
+      } else if (record->tap.count && is_pressed) {
+        return true; // Return true to continue normal key processing
       } else if (is_pressed) {
-        register_code16(KC_RSFT); 
-        register_code16(KC_RCTL);
-        trns_layer_hold_registered = true;
-      } else if (trns_layer_hold_registered) {
-        unregister_code16(KC_RSFT);
-        unregister_code16(KC_RCTL);
-        trns_layer_hold_registered = false;
+        if (is_meh_f17_pressed) {
+          unregister_mods(MOD_MASK_LCSA);
+          register_code16(KC_LCTL); 
+          register_code16(KC_LALT);
+          rctrlralt_registered = true;
+        } else {
+          register_mods(MOD_MASK_RCS);
+        }
+        is_rctrlrshft_f18_pressed = true;
+      } else {
+          if (rctrlralt_registered) {
+          unregister_code16(KC_LCTL);
+          unregister_code16(KC_LALT);
+          rctrlralt_registered = false;
+        } else {
+          unregister_mods(MOD_MASK_RCS);
+        }
+        // Can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
+        // if (is_meh_f17_pressed) {
+        //   register_mods(MOD_MASK_LCSA);
+        // }
+        is_rctrlrshft_f18_pressed = false;
       }
-      return true;
+      return true; // Return true because we still want the Layer toggle to trigger for tri-state layer
     }
 
     /* Tap Dance, VIM Double tap cases */
