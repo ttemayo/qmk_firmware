@@ -155,6 +155,11 @@ enum userspace_tapdance_index {
 #define S_HOME  S(KC_HOME)
 #define S_END   S(KC_END)
 
+/* Custom Mod Masks */
+#define MOD_MASK_RCS (MOD_BIT(KC_RIGHT_CTRL) | MOD_BIT(KC_RIGHT_SHIFT))
+#define MOD_MASK_LCSA (MOD_BIT(KC_LEFT_CTRL) | MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_LEFT_ALT))
+#define MOD_MASK_RCSAG (MOD_BIT(KC_RIGHT_CTRL) | MOD_BIT(KC_RIGHT_SHIFT) | MOD_BIT(KC_RIGHT_ALT) | MOD_BIT(KC_RIGHT_GUI))
+
 void numlock_on_init(void); // Function for turning ON numlock at keyboard init
 
 #ifdef LEADER_ENABLE
