@@ -680,91 +680,39 @@ __attribute__((weak)) void matrix_scan_keymap(void) {}
 void matrix_scan_user(void) { 
 
   /* Tracking Symbol Key Hold w/Timer */
-# ifdef TTEMAYO_SYM_MACROS_ENABLE
-  if (is_s_tilde_pressed) {
-    if (timer_elapsed(s_tilde_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("~" SS_TAP(X_LEFT)));
-    }
-  }
+#ifdef TTEMAYO_SYM_MACROS_ENABLE
+  typedef struct {
+    bool* key_flag;
+    uint16_t timer;
+    const char* output;
+  } SymbolMacro;
 
-  if (is_s_lcblk_pressed) {
-    if (timer_elapsed(s_lcblk_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR(" */" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)));
-    }
-  }
+  SymbolMacro symbol_macros[] = {
+    { &is_s_tilde_pressed, s_tilde_timer, PSTR("~" SS_TAP(X_LEFT)) },
+    { &is_s_lcblk_pressed, s_lcblk_timer, PSTR(" */" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)) },
+    { &is_s_astr_pressed, s_astr_timer, PSTR("*" SS_TAP(X_LEFT)) },
+    { &is_s_pct_pressed, s_pct_timer, PSTR("%" SS_TAP(X_LEFT)) },
+    { &is_s_tgrv_pressed, s_tgrv_timer, PSTR("```" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)) },
+    { &is_s_grv_pressed, s_grv_timer, PSTR("`" SS_TAP(X_LEFT)) },
+    { &is_s_lbrc_pressed, s_lbrc_timer, PSTR("]" SS_TAP(X_LEFT)) },
+    { &is_s_lcbr_pressed, s_lcbr_timer, PSTR("}" SS_TAP(X_LEFT)) },
+    { &is_s_lprn_pressed, s_lprn_timer, PSTR(")" SS_TAP(X_LEFT)) },
+    { &is_s_labk_pressed, s_labk_timer, PSTR(">" SS_TAP(X_LEFT)) },
+    { &is_s_dpipe_pressed, s_dpipe_timer, PSTR("||" SS_TAP(X_LEFT) SS_TAP(X_LEFT)) },
+    { &is_s_quot_pressed, s_quot_timer, PSTR("'" SS_TAP(X_LEFT)) },
+    { &is_s_dquo_pressed, s_dquo_timer, PSTR("\"" SS_TAP(X_LEFT)) },
+    { &is_s_unds_pressed, s_unds_timer, PSTR("_" SS_TAP(X_LEFT)) }
+  };
 
-  if (is_s_astr_pressed) {
-    if (timer_elapsed(s_astr_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("*" SS_TAP(X_LEFT)));
+  for (int i = 0; i < sizeof(symbol_macros) / sizeof(SymbolMacro); i++) {
+    SymbolMacro macro = symbol_macros[i];
+    if (*(macro.key_flag)) {
+      if (timer_elapsed(macro.timer) == TAPPING_TERM + 25) {
+        send_string_nomods(macro.output);
+      }
     }
   }
-
-  if (is_s_pct_pressed) {
-    if (timer_elapsed(s_pct_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("%" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_tgrv_pressed) {
-    if (timer_elapsed(s_tgrv_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("```" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_grv_pressed) {
-    if (timer_elapsed(s_grv_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("`" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_lbrc_pressed) {
-    if (timer_elapsed(s_lbrc_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("]" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_lcbr_pressed) {
-    if (timer_elapsed(s_lcbr_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("}" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_lprn_pressed) {
-    if (timer_elapsed(s_lprn_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR(")" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_labk_pressed) {
-    if (timer_elapsed(s_labk_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR(">" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_dpipe_pressed) {
-    if (timer_elapsed(s_dpipe_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("||" SS_TAP(X_LEFT) SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_quot_pressed) {
-    if (timer_elapsed(s_quot_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("'" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_dquo_pressed) {
-    if (timer_elapsed(s_dquo_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("\"" SS_TAP(X_LEFT)));
-    }
-  }
-
-  if (is_s_unds_pressed) {
-    if (timer_elapsed(s_unds_timer) == TAPPING_TERM + 25) {
-      send_string_nomods(PSTR("_" SS_TAP(X_LEFT)));
-    }
-  }
-# endif // TTEMAYO_SYM_MACROS_ENABLE
+#endif // TTEMAYO_SYM_MACROS_ENABLE
 
 # ifdef LEADER_ENABLE
   LEADER_DICTIONARY() {
