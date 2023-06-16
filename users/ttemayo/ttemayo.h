@@ -197,8 +197,6 @@ void sym_doublepipe(void);        // ||
 void sym_tildeslash(void);        // ~/.
 #endif // TTEMAYO_SYM_MACROS_ENABLE
 
-void register_rhyper (void);
-void unregister_rhyper (void);
 void tap_code16_nomods(uint16_t kc);
 void send_macro_nomods(void (*func)(void));
 void send_string_nomods(const char *string);

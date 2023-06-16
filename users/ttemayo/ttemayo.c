@@ -911,21 +911,6 @@ bool caps_word_press_user(uint16_t keycode) {
   }
 }
 
-/* Helper functions to invoke Right Hyper */
-void register_rhyper (void) { 
-  register_code (KC_RSFT);
-  register_code (KC_RCTL);
-  register_code (KC_RALT);
-  register_code (KC_RGUI);
-}
-
-void unregister_rhyper (void) { 
-  unregister_code (KC_RSFT);
-  unregister_code (KC_RCTL);
-  unregister_code (KC_RALT);
-  unregister_code (KC_RGUI);
-}
-
 /**
  * @brief Tap keycode, with no mods
  *
