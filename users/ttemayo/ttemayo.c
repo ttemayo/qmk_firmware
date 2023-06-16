@@ -578,98 +578,65 @@ void numlock_on_init(void) {
 // ************** LEADER KEY MACROS *************** // 
 // ************************************************ // 
 #ifdef LEADER_ENABLE
-/* Encase Cursor Macros*/
-// Block Comment, / * ▌ * / 
-void ldr_encase_blkcomment(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "/*  */" 
-    SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  /* Encase Selection, Leader Key Macros */
+  void ldr_encase_handler(const char* str, uint8_t left_tap_count) {
+    SEND_STRING ( SS_LCTL("c"));
+    send_string_with_delay(str, 0);
+    for (uint8_t i = 0; i < left_tap_count; i++) {
+      tap_code16(KC_LEFT);
+    }
+    SEND_STRING (SS_LCTL("v"));
+    for (uint8_t i = 0; i < left_tap_count; i++) {
+      tap_code16(KC_RIGHT);
+    }
+  }
 
-// Asterisk, *▌* 
-void ldr_encase_asterisk(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "**" 
-    SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Block Comment, / * ▌ * / 
+  void ldr_encase_blkcomment(void) {
+    ldr_encase_handler("/*  */", 3);
+  }
 
-// Percent,  %▌% 
-void ldr_encase_pct(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "%%" 
-    SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Asterisk, *▌* 
+  void ldr_encase_asterisk(void) {
+    ldr_encase_handler("**", 1);
+  }
 
-// Markdown Block Code, ```▌```
-void ldr_encase_gravetriple(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "``````" 
-    SS_TAP(X_LEFT)SS_TAP(X_LEFT)SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Percent,  %▌% 
+  void ldr_encase_pct(void) {
+    ldr_encase_handler("%%", 1);
+  }
 
-// Grave, `▌`
-void ldr_encase_grave(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "``" 
-    SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Markdown Block Code, ```▌```
+  void ldr_encase_gravetriple(void) {
+    ldr_encase_handler("``````", 3);
+  }
 
-// Square Bracket, [▌]
-void ldr_encase_bracket(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "[]" 
-    SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Grave, `▌`
+  void ldr_encase_grave(void) {
+    ldr_encase_handler("``", 1);
+  }
 
-// Curly Brace, {▌}
-void ldr_encase_curlybrace(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "{}" 
-    SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Square Bracket, [▌]
+  void ldr_encase_bracket(void) {
+    ldr_encase_handler("[]", 1);
+  }
 
-// Parenthesis, (▌)
-void ldr_encase_paren(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "()" 
-    SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Curly Brace, {▌}
+  void ldr_encase_curlybrace(void) {
+    ldr_encase_handler("{}", 1);
+  }
 
-// Angle Bracket, <▌>
-void ldr_encase_angbracket(void) {
-  SEND_STRING (
-    SS_LCTL("c") 
-    "<>" 
-    SS_TAP(X_LEFT)
-    SS_LCTL("v")
-  );
-}
+  // Parenthesis, (▌)
+  void ldr_encase_paren(void) {
+    ldr_encase_handler("()", 1);
+  }
 
-LEADER_EXTERNS(); // Keep this line above matrix_scan_user
+  // Angle Bracket, <▌>
+  void ldr_encase_angbracket(void) {
+    ldr_encase_handler("<>", 1);
+  }
+
+  LEADER_EXTERNS(); // Keep this line above matrix_scan_user
 #endif // LEADER_ENABLE
 
 // ************************************************ // 
