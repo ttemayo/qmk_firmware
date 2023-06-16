@@ -171,8 +171,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else if (is_pressed) {
         if (is_rctrlrshft_f18_pressed) {
           unregister_mods(MOD_MASK_RCS);
-          register_code16(KC_LCTL);
-          register_code16(KC_LALT);
+          register_mods(MOD_MASK_LCA);
           rctrlralt_registered = true;
         } else {
           register_mods(MOD_MASK_LCSA);
@@ -180,13 +179,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         is_meh_f17_pressed = true;
       } else {
         if (rctrlralt_registered) {
-          unregister_code16(KC_LCTL);
-          unregister_code16(KC_LALT);
+          unregister_mods(MOD_MASK_LCA);
           rctrlralt_registered = false;
         } else {
           unregister_mods(MOD_MASK_LCSA);
         }
-        // Can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
+        // The following can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
         // if (is_rctrlrshft_f18_pressed) {
         //   register_mods(MOD_MASK_RCS);
         // }
@@ -201,16 +199,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     { // Add RShift and RCtrl modifiers to hold
       static bool rctrlralt_registered;
       if (record->tap.count && is_pressed && mod_state != 0) {
-        // At least one modifier key is active
-        tap_code16(KC_F18);
+        tap_code16(KC_F18); // At least one modifier key is active
         return false;
       } else if (record->tap.count && is_pressed) {
         return true; // Return true to continue normal key processing
       } else if (is_pressed) {
         if (is_meh_f17_pressed) {
           unregister_mods(MOD_MASK_LCSA);
-          register_code16(KC_LCTL); 
-          register_code16(KC_LALT);
+          register_mods(MOD_MASK_LCA);
           rctrlralt_registered = true;
         } else {
           register_mods(MOD_MASK_RCS);
@@ -218,13 +214,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         is_rctrlrshft_f18_pressed = true;
       } else {
           if (rctrlralt_registered) {
-          unregister_code16(KC_LCTL);
-          unregister_code16(KC_LALT);
+          unregister_mods(MOD_MASK_LCA);
           rctrlralt_registered = false;
         } else {
           unregister_mods(MOD_MASK_RCS);
         }
-        // Can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
+        // The following can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
         // if (is_meh_f17_pressed) {
         //   register_mods(MOD_MASK_LCSA);
         // }
