@@ -248,6 +248,12 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
         sym_emdash();
         set_mods(mod_state);
 #       endif // TTEMAYO_SYM_MACROS_ENABLE
+      } else if (is_pressed && (get_mods() == MOD_MASK_RCSAG)) {
+        clear_mods();
+#       ifndef NO_ACTION_ONESHOT 
+        clear_oneshot_mods();
+#       endif // NO_ACTION_ONESHOT
+        layer_move(0);
       } else if (is_pressed) {
         switch(VIM_QUEUE) {
           case VIM_R: VIM_LEFT(); break;
