@@ -113,30 +113,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     /* Modify standard keycode behaviour */
     case KC_DEL:  // LShift + Backspace for Delete
-        {
+    {
         // Initialize a boolean variable that keeps track
         // of the delete key status: registered or not?
         static bool bspckey_registered;
+        static bool enterkey_registered;
         if (record->event.pressed) {
-            // Detect the activation of either shift keys
-            if (mod_state == MOD_BIT(KC_LSFT)) {
-                // First temporarily canceling both shifts so that
-                // shift isn't applied to the KC_BSPC keycode
-                del_mods(MOD_BIT(KC_LSFT));
-                register_code(KC_BSPC);
-                // Update the boolean variable to reflect the status of KC_BSPC
-                bspckey_registered = true;
-                // Reapplying modifier state so that the held shift key(s)
-                // still work even after having tapped the Backspace/Delete key.
-                set_mods(mod_state);
-                return false;
-            }
+          // Detect the activation of either shift keys
+          if (mod_state == MOD_BIT(KC_LSFT)) {
+            // First temporarily canceling both shifts so that
+            // shift isn't applied to the KC_BSPC keycode
+            del_mods(MOD_BIT(KC_LSFT));
+            register_code(KC_BSPC);
+            // Update the boolean variable to reflect the status of KC_BSPC
+            bspckey_registered = true;
+            // Reapplying modifier state so that the held shift key(s)
+            // still work even after having tapped the Backspace/Delete key.
+            set_mods(mod_state);
+            return false;
+          } else if (is_rctrlrshft_f18_pressed) {
+            del_mods(MOD_MASK_RCS);
+            register_code(KC_ENTER);
+            enterkey_registered = true;
+            set_mods(MOD_MASK_RCS);
+          }
         } else { // on release of KC_DEL
             // In case KC_BSPC is still being sent even after the release of KC_DEL
             if (bspckey_registered) {
-                unregister_code(KC_BSPC);
-                bspckey_registered = false;
-                return false;
+              unregister_code(KC_BSPC);
+              bspckey_registered = false;
+              return false;
+            } else if (enterkey_registered) {
+              unregister_code(KC_ENTER);
+              enterkey_registered = true;
+              return false;
             }
         }
         // Let QMK process the KC_DEL keycode as usual outside of shift
