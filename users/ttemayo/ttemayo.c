@@ -136,6 +136,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             register_code(KC_ENTER);
             enterkey_registered = true;
             set_mods(MOD_MASK_RCS);
+            return false;
           }
         } else { // on release of KC_DEL
             // In case KC_BSPC is still being sent even after the release of KC_DEL
@@ -145,7 +146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               return false;
             } else if (enterkey_registered) {
               unregister_code(KC_ENTER);
-              enterkey_registered = true;
+              enterkey_registered = false;
               return false;
             }
         }
