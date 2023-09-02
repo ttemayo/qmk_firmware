@@ -228,8 +228,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           unregister_mods(MOD_MASK_LCSA);
         }
         // The following can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
+        // send_keyboard_report();
         // if (is_rctrlrshft_f18_pressed) {
-        //   register_mods(MOD_MASK_RCS);
+        //   set_mods(mod_state);
         // }
         is_meh_f17_pressed = false;
         break;
@@ -263,8 +264,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           unregister_mods(MOD_MASK_RCS);
         }
         // The following can result in modifiers getting stuck if MEH_F17 and RST_F18 are pressed in quick succession
+        // send_keyboard_report();
         // if (is_meh_f17_pressed) {
-        //   register_mods(MOD_MASK_LCSA);
+        //   set_mods(mod_state);
         // }
         is_rctrlrshft_f18_pressed = false;
       }
