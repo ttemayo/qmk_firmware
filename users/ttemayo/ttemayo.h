@@ -8,6 +8,10 @@
 # include "vimdows.h" // SAFE_RANGE visibility
 #endif // VIMDOWS_ENABLE
 
+#ifdef KEY_OVERRIDE_ENABLE
+#   include "features/key_override.h"
+#endif // KEY_OVERRIDE_ENABLE
+
 bool on_mac; // Future feature flag to toggle for Mac functionality
 bool is_leader_active; // Future feature flag to update LEDs or Display
 bool is_scroll_locked;

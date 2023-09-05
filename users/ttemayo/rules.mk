@@ -7,6 +7,11 @@
 SRC += ttemayo.c
 SRC += vimdows.c
 
+ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
+	SRC += features/key_override.c
+    OPT_DEFS += -DKEY_OVERRIDE_ENABLE
+endif
+
 # ttemayo's Custom Features
 ifeq ($(strip $(USER_SYM_MACROS_ENABLE)), yes)
     OPT_DEFS += -DUSER_SYM_MACROS_ENABLE

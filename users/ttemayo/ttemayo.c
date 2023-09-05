@@ -36,52 +36,6 @@ bool is_s_unds_pressed  = false;
 #endif // USER_SYM_MACROS_ENABLE
 
 // ************************************************ //
-// **************** KEY OVERRIDES ***************** //
-// ************************************************ //
-#ifdef KEY_OVERRIDE_ENABLE
-const key_override_t ko_rshift_tab = 
-  ko_make_with_layers_negmods_and_options(MOD_BIT(KC_RSFT)                      // Modifier
-                                          , KC_TAB                              // Trigger key
-                                          , KC_F22                              // Replacement
-                                          , (1 << _BASE)                        // Layers
-                                          , (uint8_t) ~MOD_BIT(KC_RSFT)         // Negative_mods
-                                          , ko_option_activation_trigger_down); // Options
-
-const key_override_t ko_lshift_lead = 
-  ko_make_with_layers_negmods_and_options(MOD_BIT(KC_LSFT)
-                                          , KC_LEAD
-                                          , KC_F23
-                                          , (1 << _BASE)
-                                          , (uint8_t) ~MOD_BIT(KC_LSFT)
-                                          , ko_option_activation_trigger_down);
-
-const key_override_t ko_rshift_f16 = 
-  ko_make_with_layers_negmods_and_options(MOD_BIT(KC_RSFT)
-                                          , KC_F16
-                                          , KC_PGUP
-                                          , (1 << _BASE)
-                                          , (uint8_t) ~MOD_BIT(KC_RSFT)
-                                          , ko_option_activation_trigger_down);
-
-const key_override_t ko_rshift_prtscr = 
-  ko_make_with_layers_negmods_and_options(MOD_BIT(KC_RSFT)
-                                          , FT_PSCR
-                                          , KC_PGDN
-                                          , (1 << _BASE)
-                                          , (uint8_t) ~MOD_BIT(KC_RSFT)
-                                          , ko_option_activation_trigger_down);
-
-// This globally defines all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-	&ko_rshift_tab,
-  &ko_lshift_lead,
-  &ko_rshift_f16,
-  &ko_rshift_prtscr,
-	NULL // Null terminate the array of overrides!
-};
-#endif // KEY_OVERRIDE_ENABLE
-
-// ************************************************ //
 // ******* CUSTOM KEYCODES/PROCESS_RECORD ********* //
 // ************************************************ //
 // Overloaded function for individual keymaps if they need something extra/keyboard specific
