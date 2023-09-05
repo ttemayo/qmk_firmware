@@ -18,7 +18,7 @@ bool is_m_prv_pressed = false; // Media Previous Track
 bool is_m_nxt_pressed = false; // Media Next Track
 
 /* Flags to determine hold for auto-encase cursor */
-#ifdef TTEMAYO_SYM_MACROS_ENABLE
+#ifdef USER_SYM_MACROS_ENABLE
 bool is_s_tilde_pressed = false;
 bool is_s_lcblk_pressed = false;
 bool is_s_astr_pressed  = false;
@@ -33,7 +33,7 @@ bool is_s_dpipe_pressed = false;
 bool is_s_quot_pressed  = false;
 bool is_s_dquo_pressed  = false;
 bool is_s_unds_pressed  = false;
-#endif // TTEMAYO_SYM_MACROS_ENABLE
+#endif // USER_SYM_MACROS_ENABLE
 
 // ************************************************ //
 // **************** KEY OVERRIDES ***************** //
@@ -343,7 +343,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return true;
 
-#   ifdef TTEMAYO_SYM_MACROS_ENABLE
+#   ifdef USER_SYM_MACROS_ENABLE
     /* Modifying Tap part of Mod-Tap */
     case HYPR_T(EMDASH):
       if (record->tap.count && is_pressed) {
@@ -586,7 +586,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-#   endif // TTEMAYO_SYM_MACROS_ENABLE
+#   endif // USER_SYM_MACROS_ENABLE
   }
   return process_record_keymap(keycode, record);
 }
@@ -692,7 +692,7 @@ __attribute__((weak)) void matrix_scan_keymap(void) {}
 void matrix_scan_user(void) { 
 
   /* Tracking Symbol Key Hold w/Timer */
-#ifdef TTEMAYO_SYM_MACROS_ENABLE
+#ifdef USER_SYM_MACROS_ENABLE
   typedef struct {
     bool* key_flag;
     uint16_t timer;
@@ -724,7 +724,7 @@ void matrix_scan_user(void) {
       }
     }
   }
-#endif // TTEMAYO_SYM_MACROS_ENABLE
+#endif // USER_SYM_MACROS_ENABLE
 
 # ifdef LEADER_ENABLE
   LEADER_DICTIONARY() {
@@ -787,7 +787,7 @@ void leader_end(void) {
 // ************************************************ //
 // ****** BIAGRAM and UNICODE SYMBOL MACROS ******* //
 // ************************************************ // 
-#ifdef TTEMAYO_SYM_MACROS_ENABLE
+#ifdef USER_SYM_MACROS_ENABLE
 void sym_emdash(void) {
   register_code16(KC_RALT);
     tap_code(KC_KP_0);
@@ -809,7 +809,7 @@ void sym_closecommentblock(void)  { SEND_STRING(" */"); }
 void sym_triplegrave(void)        { SEND_STRING("```"); }
 void sym_doublepipe(void)         { SEND_STRING("||"); }
 void sym_tildeslash(void)         { SEND_STRING("~/."); }
-#endif // TTEMAYO_SYM_MACROS_ENABLE
+#endif // USER_SYM_MACROS_ENABLE
 
 // ************************************************ // 
 // ************* LAYER RGB INDICATORS ************* // 

@@ -243,11 +243,11 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     {
       static bool vim_esckey_registered; // Track Esc key status to release on else clause
       if (is_pressed && (get_mods() == MOD_BIT(KC_RSFT))) {
-#       ifdef TTEMAYO_SYM_MACROS_ENABLE
+#       ifdef USER_SYM_MACROS_ENABLE
         del_mods(MOD_BIT(KC_RSFT));
         sym_emdash();
         set_mods(mod_state);
-#       endif // TTEMAYO_SYM_MACROS_ENABLE
+#       endif // USER_SYM_MACROS_ENABLE
       } else if (is_pressed && (get_mods() == MOD_MASK_RCSAG)) {
         clear_mods();
 #       ifndef NO_ACTION_ONESHOT 

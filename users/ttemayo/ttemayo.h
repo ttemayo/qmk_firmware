@@ -22,7 +22,7 @@ extern bool is_rctrlrsft_f18_pressed;
 bool is_m_prv_pressed;
 bool is_m_nxt_pressed;
 
-#ifdef TTEMAYO_SYM_MACROS_ENABLE
+#ifdef USER_SYM_MACROS_ENABLE
 /* Timers to evaluate hold for symbol encasing cursor */
 uint16_t s_tilde_timer;
 uint16_t s_lcblk_timer;
@@ -54,7 +54,7 @@ bool is_s_dpipe_pressed;
 bool is_s_quot_pressed;
 bool is_s_dquo_pressed;
 bool is_s_unds_pressed;
-#endif // TTEMAYO_SYM_MACROS_ENABLE
+#endif // USER_SYM_MACROS_ENABLE
 
 enum userspace_layer_names {
   _BASE = 0,  // = 0; QWERTY
@@ -180,7 +180,7 @@ void ldr_encase_gravetriple(void);
 #endif // LEADER_ENABLE
 
 /* Symbol Macros */
-#ifdef TTEMAYO_SYM_MACROS_ENABLE
+#ifdef USER_SYM_MACROS_ENABLE
 void sym_emdash(void);            // — (ALT 250)
 void sym_arrowoperator(void);     // ->
 void sym_arrowfunction(void);     // =>
@@ -195,7 +195,7 @@ void sym_closecommentblock(void); // */
 void sym_triplegrave(void);       // ```
 void sym_doublepipe(void);        // ||
 void sym_tildeslash(void);        // ~/.
-#endif // TTEMAYO_SYM_MACROS_ENABLE
+#endif // USER_SYM_MACROS_ENABLE
 
 void tap_code16_nomods(uint16_t kc);
 void send_macro_nomods(void (*func)(void));

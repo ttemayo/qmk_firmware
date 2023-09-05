@@ -8,8 +8,8 @@ SRC += ttemayo.c
 SRC += vimdows.c
 
 # ttemayo's Custom Features
-ifeq ($(strip $(TTEMAYO_SYM_MACROS_ENABLE)), yes)
-    OPT_DEFS += -DTTEMAYO_SYM_MACROS_ENABLE
+ifeq ($(strip $(USER_SYM_MACROS_ENABLE)), yes)
+    OPT_DEFS += -DUSER_SYM_MACROS_ENABLE
 endif
 
 ifeq ($(strip $(VIMDOWS_ENABLE)), yes)

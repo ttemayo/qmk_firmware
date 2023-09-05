@@ -16,7 +16,7 @@ MOUSEKEY_ENABLE = yes 		# 600 bytes; Mouse Keycodes
 KEY_OVERRIDE_ENABLE = yes	# 990 bytes;
 
 # ttemayo's Custom Features
-TTEMAYO_SYM_MACROS_ENABLE = yes
+USER_SYM_MACROS_ENABLE = yes
 VIMDOWS_ENABLE = yes
 
 # Firmware Size Optimizations
