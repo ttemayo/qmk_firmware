@@ -118,7 +118,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // of the delete key status: registered or not?
         static bool bspckey_registered;
         static bool enterkey_registered;
-        if (record->event.pressed) {
+        if (is_pressed) {
           // Detect the activation of either shift keys
           if (mod_state == MOD_BIT(KC_LSFT)) {
             // First temporarily canceling both shifts so that
