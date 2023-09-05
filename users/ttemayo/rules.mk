@@ -5,12 +5,6 @@
 ## NOTE: This is included in build AFTER keyboard specific rules 
 
 SRC += ttemayo.c
-SRC += vimdows.c
-
-ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
-	SRC += features/key_override.c
-    OPT_DEFS += -DKEY_OVERRIDE_ENABLE
-endif
 
 # ttemayo's Custom Features
 ifeq ($(strip $(USER_SYM_MACROS_ENABLE)), yes)
@@ -18,7 +12,14 @@ ifeq ($(strip $(USER_SYM_MACROS_ENABLE)), yes)
 endif
 
 ifeq ($(strip $(USER_VIMDOWS_ENABLE)), yes)
+	SRC += features/vimdows.c
     OPT_DEFS += -DUSER_VIMDOWS_ENABLE
+endif
+
+# QMK Features
+ifeq ($(strip $(KEY_OVERRIDE_ENABLE)), yes)
+	SRC += features/key_override.c
+    OPT_DEFS += -DKEY_OVERRIDE_ENABLE
 endif
 
 #ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)

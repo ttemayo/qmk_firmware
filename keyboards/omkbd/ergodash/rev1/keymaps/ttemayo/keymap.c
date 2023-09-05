@@ -3,7 +3,7 @@
 
 #include QMK_KEYBOARD_H
 #include "ttemayo.h"
-#include "vimdows.h"
+#include "features/vimdows.h"
 #include "custom_keycode.h"
 #ifdef TAP_DANCE_ENABLE
 #  include "tapdance.h"

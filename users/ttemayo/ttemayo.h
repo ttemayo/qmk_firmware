@@ -5,7 +5,7 @@
 
 #include QMK_KEYBOARD_H
 #ifdef USER_VIMDOWS_ENABLE
-#   include "vimdows.h" // SAFE_RANGE visibility
+#   include "features/vimdows.h" // SAFE_RANGE visibility
 #endif // USER_VIMDOWS_ENABLE
 #ifdef KEY_OVERRIDE_ENABLE
 #   include "features/key_override.h"
