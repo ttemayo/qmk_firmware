@@ -6,7 +6,7 @@
 #include "features/vimdows.h"
 #include "custom_keycode.h"
 #ifdef TAP_DANCE_ENABLE
-#  include "tapdance.h"
+#  include "features/tapdance.h"
 #endif // TAP_DANCE_ENABLE
 
 // Filler key due to replacing 1U's with 2U's
