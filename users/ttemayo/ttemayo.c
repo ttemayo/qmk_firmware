@@ -87,11 +87,10 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 // Overloaded function for individual keymaps if they need something extra/keyboard specific
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
 
-/* 
- *  Defines actions for my custom keycodes.
- *  Then runs the *_keymap's record handler if not processed here,
- *  and use "NEWPLACEHOLDER" for new safe range 
- */
+// Defines actions for my custom keycodes.
+// Then runs the *_keymap's record handler if not processed here,
+// and use "NEWPLACEHOLDER" for new safe range
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   bool is_pressed = record->event.pressed;
@@ -103,10 +102,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   const uint8_t mod_state = get_mods() | get_weak_mods(); 
 # endif // NO_ACTION_ONESHOT
 
-  /* 
-   *  NOTE: If you want the process_record_keymap to run first, uncomment the 
-   *  following line and remove call at bottom of this function 
-   */
+  // NOTE: If you want the process_record_keymap to run first, uncomment the 
+  // following line and remove call at bottom of this function 
+  // 
   // if(!process_record_keymap(keycode, record)) return false;
 
   switch (keycode) {
