@@ -4,10 +4,9 @@
 #pragma once
 
 #include QMK_KEYBOARD_H
-#ifdef VIMDOWS_ENABLE
-# include "vimdows.h" // SAFE_RANGE visibility
-#endif // VIMDOWS_ENABLE
-
+#ifdef USER_VIMDOWS_ENABLE
+#   include "vimdows.h" // SAFE_RANGE visibility
+#endif // USER_VIMDOWS_ENABLE
 #ifdef KEY_OVERRIDE_ENABLE
 #   include "features/key_override.h"
 #endif // KEY_OVERRIDE_ENABLE
@@ -72,11 +71,11 @@ enum userspace_layer_names {
 };
 
 enum userspace_custom_keycodes {
-# ifdef VIMDOWS_ENABLE
+# ifdef USER_VIMDOWS_ENABLE
   PLACEHOLDER = VIM_SAFE_RANGE,
 # else
   PLACEHOLDER = SAFE_RANGE,
-# endif // VIMDOWS_ENABLE
+# endif // USER_VIMDOWS_ENABLE
   S_TILDE,  // Tap ~    Hold to encase cursor ~
   S_LCBLK,  // Tap /*   Hold to encase cursor */
   S_ASTR,   // Tap *    Hold to encase cursor *

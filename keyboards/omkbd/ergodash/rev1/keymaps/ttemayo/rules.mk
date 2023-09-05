@@ -17,7 +17,7 @@ KEY_OVERRIDE_ENABLE = yes	# 990 bytes;
 
 # ttemayo's Custom Features
 USER_SYM_MACROS_ENABLE = yes
-VIMDOWS_ENABLE = yes
+USER_VIMDOWS_ENABLE = yes
 
 # Firmware Size Optimizations
 EXTRAFLAGS += -flto

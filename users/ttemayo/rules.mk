@@ -17,8 +17,8 @@ ifeq ($(strip $(USER_SYM_MACROS_ENABLE)), yes)
     OPT_DEFS += -DUSER_SYM_MACROS_ENABLE
 endif
 
-ifeq ($(strip $(VIMDOWS_ENABLE)), yes)
-    OPT_DEFS += -DVIMDOWS_ENABLE
+ifeq ($(strip $(USER_VIMDOWS_ENABLE)), yes)
+    OPT_DEFS += -DUSER_VIMDOWS_ENABLE
 endif
 
 #ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
